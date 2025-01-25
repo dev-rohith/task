@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import { useCart } from "../contexts/CartProvider";
 const Navbar = () => {
   const { cartItems } = useCart();
-  console.log(cartItems);
   return (
     <header>
       <nav className="bg-violet-400 p-4 ">
@@ -22,7 +21,7 @@ const Navbar = () => {
                 <ShoppingCart />
               </a>
             </Link>
-            <span className="px-2">{cartItems[0]?.products.length}</span>
+            <span className="px-2">{cartItems?.products.length}</span>
           </li>
         </ul>
       </nav>
