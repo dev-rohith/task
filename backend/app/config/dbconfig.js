@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
+import { configDotenv } from "dotenv";
+configDotenv();
+
+const db = process.env.MONGO_URL;
 
 function dbconnection() {
-  mongoose.connect("mongodb://localhost:27017/task");
+  mongoose.connect(db);
 
   const connection = mongoose.connection;
 
