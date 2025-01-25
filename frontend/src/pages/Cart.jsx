@@ -1,6 +1,7 @@
 import {  ShoppingCart, CreditCard } from "lucide-react";
 import { useCart } from "../contexts/CartProvider";
 import CartItem from "../components/CartItem";
+import { Link } from "react-router";
 
 const Cart = () => {
   const { cartItems } = useCart();
@@ -20,15 +21,15 @@ const Cart = () => {
         <div className="space-y-2">
           <div className="flex justify-between text-violet-900">
             <span>Subtotal</span>
-            <span>${totalPrice.toFixed(2)}</span>
+            <span>₹{totalPrice.toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-violet-900">
             <span>Tax (10%)</span>
-            <span>${(totalPrice * 0.1).toFixed(2)}</span>
+            <span>₹{(totalPrice * 0.1).toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-bold text-violet-800 border-t pt-2">
             <span>Total</span>
-            <span>${(totalPrice * 1.1).toFixed(2)}</span>
+            <span>₹{(totalPrice * 1.1).toFixed(2)}</span>
           </div>
         </div>
       </div>
@@ -44,10 +45,12 @@ const Cart = () => {
       </div>
 
       {/* Proceed to Pay Section */}
+      <Link to='/success'>
       <button className="w-full bg-violet-600 text-white py-3 rounded-lg hover:bg-violet-700 transition-colors flex items-center justify-center">
         <CreditCard className="mr-2" />
         Proceed to Pay
       </button>
+      </Link>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import axiosInstance from "../utils/axiosInstance";
+import toast from "react-hot-toast";
 
 const cartContext = createContext();
 
@@ -43,6 +44,7 @@ function CartProvider({ children }) {
           totalPrice: postItem.data.cart.totalPrice,
         },
       });
+      toast.success("Successfully toasted!");
     } catch (error) {
       console.log(error);
     }
@@ -60,8 +62,12 @@ function CartProvider({ children }) {
           totalPrice: postItem.data.cart.totalPrice,
         },
       });
+      toast('Item removed!', {
+        icon: '😒',
+      });
     } catch (error) {
       console.log(error);
+      toast.error('there was a bug here sorry')
     }
   }
 

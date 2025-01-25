@@ -14,7 +14,7 @@ const ProductItem = ({ _id, name, price, image }) => {
     <div className="w-40  border-4 border-violet-300 p-0 text-center bg-pink-100">
       <img src={image} alt={name} className="w-40 h-40" />
       <h4 className="uppercase font-medium text-violet-900">{name}</h4>
-      <p className="font-bold text-slate-700 text-lg">Price: {price}</p>
+      <p className="font-bold text-slate-700 text-lg">Price: ₹{price}</p>
       <label htmlFor="qantity">Quantity</label>
       <select
         name="quantity"

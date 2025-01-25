@@ -6,6 +6,7 @@ import Cart from "./pages/Cart";
 import { useEffect } from "react";
 import axiosInstance from "./utils/axiosInstance";
 import { useCart } from "./contexts/CartProvider";
+import OrderSuccess from "./components/OrderSuccess";
 
 const App = () => {
   
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/" element={<ProductsListing />} />
         <Route path="/products" element={<ProductManagement />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/success" element={<OrderSuccess />} />
       </Route>
     </Routes>
   );
