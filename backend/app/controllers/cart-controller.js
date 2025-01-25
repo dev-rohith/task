@@ -5,7 +5,7 @@ const cartCtrl = {};
 
 cartCtrl.getCart = async (req, res) => {
   try {
-    const cart = await Cart.find();
+    const cart = await Cart.find()
     return res.status(200).json({ data: cart });
   } catch (error) {
     return res.status(400).json({ message: "cart not found" });
@@ -76,7 +76,9 @@ cartCtrl.removeItemFromCart = async (req, res) => {
       // Retrieve product details
       const product = await Product.findById(productId);
       if (!product) {
-        return res.status(404).json({ message: "Product not found in database" });
+        return res
+          .status(404)
+          .json({ message: "Product not found in database" });
       }
 
       // Adjust the total price
@@ -97,6 +99,5 @@ cartCtrl.removeItemFromCart = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error", error });
   }
 };
-
 
 export default cartCtrl;

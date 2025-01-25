@@ -5,7 +5,6 @@ const ProductItem = ({ _id, name, price, image }) => {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
   function handleAddToCart() {
-    console.log(quantity)
     addToCart({
       productId: _id,
       quantity,

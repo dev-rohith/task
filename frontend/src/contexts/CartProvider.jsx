@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import axiosInstance from "../utils/axiosInstance";
 
 const cartContext = createContext();
@@ -15,7 +15,11 @@ function cartReducer(state, action) {
       };
     }
     case "REMOVE_ITEM": {
-      return (state.products = state.payload);
+      return {
+        ...state,
+        products: action.payload.products,
+        totalPrice: action.payload.totalPrice,
+      };
     }
     case "ADD_CART": {
       return action.payload;
@@ -29,11 +33,9 @@ function cartReducer(state, action) {
 function CartProvider({ children }) {
   const [cartItems, cartDispatch] = useReducer(cartReducer, initialCart);
 
-
   async function addToCart(item) {
     try {
       const postItem = await axiosInstance.post("/cart/add-item", item);
-      console.log(postItem.data.cart);
       cartDispatch({
         type: "ADD_ITEM",
         payload: {
@@ -46,10 +48,18 @@ function CartProvider({ children }) {
     }
   }
 
-  async function removeFromCart(item) {
+  async function removeFromCart(itemId) {
     try {
-      const postItem = await axiosInstance.post("/cart/remove-item", item);
-      console.log(postItem);
+      const postItem = await axiosInstance.post("/cart/remove-item", {
+        productId: itemId,
+      });
+      cartDispatch({
+        type: "REMOVE_ITEM",
+        payload: {
+          products: postItem.data.cart.products,
+          totalPrice: postItem.data.cart.totalPrice,
+        },
+      });
     } catch (error) {
       console.log(error);
     }

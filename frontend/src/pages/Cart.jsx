@@ -1,9 +1,11 @@
-import { Trash2, ShoppingCart, CreditCard } from "lucide-react";
+import {  ShoppingCart, CreditCard } from "lucide-react";
 import { useCart } from "../contexts/CartProvider";
+import CartItem from "../components/CartItem";
 
 const Cart = () => {
-  const {cartItems} = useCart()
-  const { products, totalPrice } = cartItems
+  const { cartItems } = useCart();
+  const { products, totalPrice } = cartItems;
+
 
   return (
     <div className="bg-purple-50 p-6 rounded-lg shadow-md max-w-md mx-auto">
@@ -37,23 +39,7 @@ const Cart = () => {
           Cart Items
         </h3>
         {products.map((item) => (
-          <div
-            key={item._id}
-            className="flex items-center justify-between mb-3 pb-3 border-b"
-          >
-            <div className="flex-grow mr-4">
-              <span className="text-violet-900">
-                Product ID: {item.product}
-              </span>
-              <div className="text-violet-600">Quantity: {item.quantity}</div>
-            </div>
-            <button
-              className="text-violet-600 hover:bg-violet-100 p-2 rounded-full transition-colors"
-              aria-label="Remove Item"
-            >
-              <Trash2 size={20} />
-            </button>
-          </div>
+          <CartItem key={item._id} {...item} />
         ))}
       </div>
 

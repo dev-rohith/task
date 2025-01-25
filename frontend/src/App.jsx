@@ -14,7 +14,6 @@ const App = () => {
     async function fetchCart() {
       try {
         const response = await axiosInstance.get("/cart");
-        console.log(response.data.data[0]);
         setCart(response.data.data[0]);
       } catch (error) {
         console.log(error);
